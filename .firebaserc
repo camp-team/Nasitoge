@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "nasitoge-2dc56": {
+      "hosting": {
+        "Nasitoge": [
+          "nasitoge-2dc56"
+        ]
+      }
+    }
+  }
+}
