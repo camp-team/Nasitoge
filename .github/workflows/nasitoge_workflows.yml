@@ -32,7 +32,9 @@ jobs:
         with:
           name: dist
           path: dist
-      - name: Deploy to Firebase
+      - name: Install Dependencies
+        run: cd functions && npm install
+       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy
