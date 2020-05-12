@@ -9,6 +9,8 @@ import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireFunctionsModule,
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' }
