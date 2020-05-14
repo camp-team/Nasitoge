@@ -11,10 +11,13 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireFunctionsModule, REGION } from '@angular/fire/functions';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { HeaderComponent } from './header/header.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +29,9 @@ import {MatButtonModule} from '@angular/material/button';
     AngularFireAuthModule,
     AngularFireFunctionsModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    HeaderComponent
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' }
