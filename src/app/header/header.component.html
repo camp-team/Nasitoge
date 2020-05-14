@@ -1,9 +1,23 @@
+<header>
+  <mat-sidenav-container class="sidenav">
+    <mat-sidenav #sidenav mode="push">
+      <mat-nav-list>
+        <a routerLink="top" mat-list-item>ホーム</a>
+        <a mat-list-item>プロフィール</a>
+        <a mat-list-item>設定</a>
+      </mat-nav-list>
+      <mat-divider></mat-divider>
+    </mat-sidenav>
 
-
-<button mat-icon-button>
-  <mat-icon>menu</mat-icon>
-</button>
-
-<h1>LOGO</h1>
-
-<button mat-raised-button color="warn">ログイン</button>
+    <mat-sidenav-content>
+      <mat-toolbar>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="sidenav__app-logo"><a routerLink="/">Nasitoge</a></span>
+        <span class="“spacer”"></span>
+        <button mat-raised-button color="warn">ログイン</button>
+      </mat-toolbar>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</header>
