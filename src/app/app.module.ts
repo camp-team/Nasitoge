@@ -40,7 +40,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDividerModule,
     FormsModule,
     ReactiveFormsModule
-
   ],
   providers: [
     { provide: REGION, useValue: 'asia-northeast1' }
