@@ -1,0 +1,24 @@
+
+.sidenav {
+  //position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  &__app-logo {
+    margin: 10px auto;
+  }
+}
+
+mat-sidenav {
+  width: 230px;
+}
+
+mat-toolbar {
+  background-color: #fffffe;
+  margin: 0px auto;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

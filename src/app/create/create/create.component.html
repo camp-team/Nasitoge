@@ -1,0 +1,19 @@
+<p>成し遂げたいことを記入しましょう！</p>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <textarea
+    type="text"
+    formControlName="dream"
+    placeholder="成し遂げたいことを記入しましょう！"
+    required
+  ></textarea>
+  <span *ngIf="dream.hasError('required')">必須です</span>
+  <span *ngIf="dream.hasError('maxlength')">最大50文字です</span>
+</form>
+
+<p>いつまでにやる？</p>
+<p>Angular Materialでカレンダー実装</p>
+
+<p>{{ form.value | json }}</p>
+
+<button [disabled]="form.invalid || form.pristine">送信</button>
