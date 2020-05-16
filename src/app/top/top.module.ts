@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { TopRoutingModule } from './top-routing.module';
 import { TopComponent } from './top/top.component';
 import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 
 @NgModule({
@@ -11,7 +13,10 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     CommonModule,
     TopRoutingModule,
-    MatButtonModule
-  ]
+    MatButtonModule,
+    MatToolbarModule,
+
+  ],
+
 })
 export class TopModule { }
