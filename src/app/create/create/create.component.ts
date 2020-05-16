@@ -16,7 +16,6 @@ export class CreateComponent implements OnInit {
     dream_date: ''
   });
 
-  // privateで定義することでこのcomponent内でFBを持つfbが使えるように。
   constructor(
     private fb: FormBuilder
     ) {}
