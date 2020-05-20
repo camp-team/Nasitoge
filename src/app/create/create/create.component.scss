@@ -1,4 +1,17 @@
-textarea {
-  border: solid 1px ;
+.create {
+  text-align: center;
+  max-width: 1032px;
+  padding: 0 16px;
+  margin: 0 auto;
+&__form {
+   background-color: red($color: #000000);
+}
 }
 
+textarea {
+  border: solid 1px;
+}
+
+h1 {
+  font-size: 24px;
+}

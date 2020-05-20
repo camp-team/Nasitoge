@@ -4,8 +4,10 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  styleUrls: ['./create.component.scss'],
 })
+
+
 export class CreateComponent implements OnInit {
 
   form = this.fb.group({
@@ -13,7 +15,9 @@ export class CreateComponent implements OnInit {
       Validators.required,
       Validators.maxLength(50)
     ]],
-    dream_date: ''
+    dreamDate: ['', [
+      Validators.required,
+    ]]
   });
 
   constructor(
@@ -23,6 +27,11 @@ export class CreateComponent implements OnInit {
   get dream(): FormControl {
     return this.form.get('dream') as FormControl;
   }
+
+  get dreamDate(): FormControl {
+    return this.form.get('dreamDate') as FormControl;
+  }
+
 
   submit() {
     console.log(this.form.value);

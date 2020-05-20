@@ -12,7 +12,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -30,7 +31,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatInputModule
   ],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'ja-JP'}
+  ]
 })
+
+
 export class CreateModule {}
