@@ -14,9 +14,22 @@
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <span class="sidenav__app-logo"><a routerLink="/">Nasitoge</a></span>
+        <span class="sidenav__app-logo">
+          <a routerLink="/">Nasitoge</a>
+        </span>
         <span class="“spacer”"></span>
-        <button mat-raised-button color="warn">ログイン</button>
+        <div class="login-area">
+          <div *ngIf="user$ | async as user; else loginBlock">
+            <button mat-raised-button color="warn" (click)="logout()">
+              ログアウト
+            </button>
+          </div>
+          <ng-template #loginBlock>
+            <button mat-raised-button color="warn" (click)="login()">
+              ログイン
+            </button>
+          </ng-template>
+        </div>
       </mat-toolbar>
     </mat-sidenav-content>
   </mat-sidenav-container>
