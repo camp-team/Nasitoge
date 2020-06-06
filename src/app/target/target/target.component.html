@@ -1,0 +1,15 @@
+<div class="container">
+<div class="target-container" *ngIf= "targets$ | async as targets">
+  <div class="target">
+    <mat-card class="target__header">
+      <p class="target__text">{{ targets.target }} をやります</p>
+      <div class="target__body">
+        <p class="target__authorId">{{ targets.authorUid }} さん</p>
+        <p class="target__date">{{ targets.targetDate }} までです。</p>
+        <p class="target__createdAt">{{ targets.createdAt }} からです</p>
+      </div>
+    </mat-card>
+    <div class="target__task"></div>
+  </div>
+</div>
+</div>
