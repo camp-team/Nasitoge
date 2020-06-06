@@ -7,7 +7,7 @@ const db = admin.firestore();
 
 export const createUser = functions.region("asia-northeast1").auth.user().onCreate((afuser) =>{
   return db.doc(`users/${afuser.uid}`).set({
-    id: afuser.uid,
+    authorUid: afuser.uid,
     name: afuser.displayName,
     avatarURl: afuser.photoURL,
     email: afuser.email,
