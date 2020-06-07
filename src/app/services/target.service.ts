@@ -18,18 +18,21 @@ export class TargetService {
     private router: Router
   ) {}
 
-  getTarget(authorUid: string): Observable<Target> {
+  getTargetByAuthorId(authorUid: string): Observable<Target> {
     return this.db
-      .collection<Target>('targets', ref => ref.where('authorUid', '==', authorUid))
+      .collection<Target>('targets', (ref) =>
+        ref.where('authorUid', '==', authorUid)
+      )
       .valueChanges()
       .pipe(
-        map(targets => {
+        map((targets) => {
           if (targets.length) {
             return targets[0];
           } else {
             return null;
           }
-        }));
+        })
+      );
   }
 
   updateTarget(targeId: string, data: Target): Promise<void> {

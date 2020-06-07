@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 export class TargetComponent implements OnInit {
   targets: Target;
 
-  targets$: Observable<Target> = this.targetService.getTarget(
+  targets$: Observable<Target> = this.targetService.getTargetByAuthorId(
     this.authService.uid
   );
 

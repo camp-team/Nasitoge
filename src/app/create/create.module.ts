@@ -9,12 +9,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import {MatInputModule} from '@angular/material/input';
-
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [CreateComponent],
@@ -22,6 +21,7 @@ import {MatInputModule} from '@angular/material/input';
     CommonModule,
     CreateRoutingModule,
     MatFormFieldModule,
+    MatInputModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -32,12 +32,7 @@ import {MatInputModule} from '@angular/material/input';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
   ],
-  providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'ja-JP'}
-  ]
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'ja-JP' }],
 })
-
-
 export class CreateModule {}

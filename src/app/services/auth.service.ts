@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { auth  } from 'firebase/app';
+import { auth } from 'firebase/app';
 import { Observable, of, from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -12,8 +12,6 @@ import { User } from '../interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
-
-
   uid: string;
 
   user$: Observable<User> = this.afAuth.user.pipe(
@@ -32,9 +30,8 @@ export class AuthService {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.user$.subscribe(user => {
+    this.user$.subscribe((user) => {
       this.uid = user && user.authorUid;
-      console.log(this.uid);
     });
   }
 
