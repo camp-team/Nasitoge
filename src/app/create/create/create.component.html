@@ -1,44 +1,54 @@
 <div class="create-container">
-  <div class="create">
+  <div class="create" *ngIf="user$ | async as user">
     <div class="create__form">
-      <h1>成し遂げたいことを<br />記入しましょう！</h1>
-      <form [formGroup]="form" (ngSubmit)="submit()">
-        <textarea
-          type="text"
-          formControlName="dream"
-          placeholder="成し遂げたいことを記入しましょう！"
-          required
-        ></textarea>
+      <form [formGroup]="form" (ngSubmit)="createTarget(user.authorUid)">
+        <h1>1ヶ月後に成し遂げたいことを</h1>
+        <h1>記入しましょう！</h1>
+        <mat-form-field>
+          <mat-label>1ヶ月後の目標</mat-label>
+          <input
+            type="text"
+            formControlName="target"
+            placeholder="ex) 4kg痩せる"
+            required
+            matInput
+            autocomplete="off"
+          />
+          <mat-error *ngIf="target.hasError('required')"
+            >必須項目です</mat-error
+          >
+          <mat-error *ngIf="target.hasError('maxlength')"
+            >最大50文字です</mat-error
+          >
+        </mat-form-field>
 
-        <span [hidden] *ngIf="!dream.hasError('required')">必須です</span>
-        <span *ngIf="dream.hasError('maxlength')">最大50文字です</span>
+        <div class="create__calender">
+          <p>いつまでにやる？</p>
+          <mat-form-field>
+            <mat-label>達成予定日</mat-label>
+            <input
+              formControlName="targetDate"
+              required
+              matInput
+              [matDatepicker]="picker"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+            <mat-error *ngIf="targetDate.hasError('required')"
+              >必須選択です</mat-error
+            >
+          </mat-form-field>
+        </div>
+
+        <p>{{ form.value | json }}</p>
+
+        <button [disabled]="form.invalid" mat-raised-button color="warn">
+          成し遂げる
+        </button>
       </form>
     </div>
-
-<div class="create__calender">
-  <p>いつまでにやる？</p>
-  <mat-form-field>
-    <mat-label>Choose a date</mat-label>
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <input
-        formControlName="dreamDate"
-        required
-        matInput
-        [matDatepicker]="picker"
-      />
-    </form>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker touchUi #picker></mat-datepicker>
-    <span [hidden] *ngIf="!dreamDate.hasError('required')">必須選択です</span>
-  </mat-form-field>
+  </div>
 </div>
-
-  <p>{{ form.value | json }}</p>
-
-<button
-  mat-raised-button
-  color="warn"
-  [disabled]="form.invalid || form.pristine"
->
-  成し遂げる！
-</button>

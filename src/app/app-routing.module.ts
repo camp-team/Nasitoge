@@ -4,12 +4,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'top',
+    path: '',
+    pathMatch: 'full',
     loadChildren: () => import('./top/top.module').then(m => m.TopModule)
   },
   {
     path: 'create',
     loadChildren: () => import('./create/create.module').then(m => m.CreateModule)
+  },
+  {
+    path: 'target',
+    loadChildren: () => import('./target/target.module').then(m => m.TargetModule)
   }
 ];
 

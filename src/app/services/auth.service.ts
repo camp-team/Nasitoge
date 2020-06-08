@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { auth } from 'firebase';
-import { Observable, of } from 'rxjs';
+import { auth } from 'firebase/app';
+import { Observable, of, from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user$: Observable<User> = this.afAuth.authState.pipe(
+  uid: string;
+
+  user$: Observable<User> = this.afAuth.user.pipe(
     switchMap((afUser) => {
       if (afUser) {
         return this.db.doc<User>(`users/${afUser.uid}`).valueChanges();
@@ -21,17 +25,24 @@ export class AuthService {
   );
 
   constructor(
-      public afAuth: AngularFireAuth,
-      private db: AngularFirestore
-    ) {}
+    public afAuth: AngularFireAuth,
+    private db: AngularFirestore,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {
+    this.user$.subscribe((user) => {
+      this.uid = user && user.authorUid;
+    });
+  }
 
   login() {
     const provider = new auth.GoogleAuthProvider();
     provider.setCustomParameters({ prompt: 'select_account' });
-    this.afAuth.signInWithPopup(provider);
+    this.afAuth.signInWithRedirect(provider);
   }
 
   logout() {
     this.afAuth.signOut();
+    this.router.navigateByUrl('');
   }
 }

@@ -1,44 +1,45 @@
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { TargetService } from 'src/app/services/target.service';
+import { Target } from 'src/app/interfaces/target';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss'],
 })
-
-
 export class CreateComponent implements OnInit {
+  user$ = this.authService.user$;
 
   form = this.fb.group({
-    dream: ['', [
-      Validators.required,
-      Validators.maxLength(50)
-    ]],
-    dreamDate: ['', [
-      Validators.required,
-    ]]
+    target: ['', [Validators.required, Validators.maxLength(50)]],
+    targetDate: ['', [Validators.required]],
   });
 
   constructor(
-    private fb: FormBuilder
-    ) {}
+    private fb: FormBuilder,
+    private targetService: TargetService,
+    private authService: AuthService
+  ) {}
 
-  get dream(): FormControl {
-    return this.form.get('dream') as FormControl;
+  get target(): FormControl {
+    return this.form.get('target') as FormControl;
   }
 
-  get dreamDate(): FormControl {
-    return this.form.get('dreamDate') as FormControl;
+  get targetDate(): FormControl {
+    return this.form.get('targetDate') as FormControl;
   }
 
+  ngOnInit(): void {}
 
-  submit() {
-    console.log(this.form.value);
+  createTarget(authorUid: string) {
+    const value = this.form.value;
+    const target: Omit<Target, 'targetId' | 'createdAt'> = {
+      authorUid,
+      target: value.target,
+      targetDate: value.targetDate,
+    };
+    this.targetService.createTarget(target);
   }
-
-  ngOnInit(): void {
-  }
-
 }
