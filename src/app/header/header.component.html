@@ -2,7 +2,7 @@
   <mat-sidenav-container class="sidenav">
     <mat-sidenav #sidenav mode="push">
       <mat-nav-list>
-        <a routerLink="top" mat-list-item>ホーム</a>
+        <a routerLink="/" mat-list-item>TOP</a>
         <a routerLink="create" mat-list-item>新しい目標をつくる</a>
         <a mat-list-item>設定</a>
       </mat-nav-list>
@@ -15,20 +15,18 @@
           <mat-icon>menu</mat-icon>
         </button>
         <span class="sidenav__app-logo">
-          <a routerLink="/">Nasitoge</a>
+          <a routerLink="/">
+            <img
+              src="../../assets/images/nasitoge-link.png"
+              alt="Nasitogeロゴリンク"
+            />
+          </a>
         </span>
         <span class="“spacer”"></span>
-        <div class="login-area">
-          <div *ngIf="user$ | async as user; else loginBlock">
-            <button mat-raised-button color="warn" (click)="logout()">
-              ログアウト
-            </button>
-          </div>
-          <ng-template #loginBlock>
-            <button mat-raised-button color="warn" (click)="login()">
-              ログイン
-            </button>
-          </ng-template>
+        <div class="logout-area">
+          <button mat-raised-button color="warn" (click)="logout()">
+            ログアウト
+          </button>
         </div>
       </mat-toolbar>
     </mat-sidenav-content>
