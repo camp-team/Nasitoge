@@ -3,6 +3,7 @@ import { Target } from 'src/app/interfaces/target';
 import { TargetService } from 'src/app/services/target.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-target',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./target.component.scss'],
 })
 export class TargetComponent implements OnInit {
-  targets: Target;
+  target$: Observable<Target>;
 
   targets$: Observable<Target> = this.targetService.getTargetByAuthorId(
     this.authService.uid
@@ -18,8 +19,15 @@ export class TargetComponent implements OnInit {
 
   constructor(
     private targetService: TargetService,
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private route: ActivatedRoute
+  ) {
+    route.paramMap.subscribe((params) => {
+      this.target$ = this.targetService.getTargetByTargetId(
+        params.get('targetId')
+      );
+    });
+  }
 
   ngOnInit(): void {}
 }

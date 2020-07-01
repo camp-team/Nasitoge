@@ -5,8 +5,12 @@
         <p class="target__text">目標: {{ targets.target }}</p>
         <div class="target__body">
           <p class="target__authorId">{{ targets.authorUid }} さん</p>
-          <p class="target__date">{{ targets.targetDate }} までです。</p>
-          <p class="target__createdAt">{{ targets.createdAt }} からです</p>
+          <p class="target__date">
+            {{ targets.targetDate.toDate() | date: 'yyyy/MM/dd' }} までです。
+          </p>
+          <p class="target__createdAt">
+            {{ targets.createdAt.toDate() | date: 'yyyy/MM/dd' }} からです
+          </p>
         </div>
       </mat-card>
       <div class="target__task"></div>

@@ -62,4 +62,8 @@ export class TargetService {
         this.router.navigateByUrl('target');
       });
   }
+
+  getTargetByTargetId(targeId: string) {
+    return this.db.doc(`targets/${targeId}`).valueChanges();
+  }
 }

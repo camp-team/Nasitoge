@@ -49,7 +49,10 @@ registerLocaleData(localeJa);
     ReactiveFormsModule,
     MatSnackBarModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'ja-JP' }],
+  providers: [
+    { provide: REGION, useValue: 'asia-noth1' },
+    { provide: LOCALE_ID, useValue: 'ja-JP' },
+  ],
   bootstrap: [AppComponent],
   // entryComponents: [DeleteDialogComponent]
 })
