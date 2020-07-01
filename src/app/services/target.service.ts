@@ -63,7 +63,7 @@ export class TargetService {
       });
   }
 
-  getTargetByTargetId(targeId: string) {
-    return this.db.doc(`targets/${targeId}`).valueChanges();
+  getTargetByTargetId(targeId: string): Observable<Target> {
+    return this.db.doc<Target>(`targets/${targeId}`).valueChanges();
   }
 }
