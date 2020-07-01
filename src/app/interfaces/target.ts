@@ -1,7 +1,9 @@
+import { firestore } from 'firebase';
+
 export interface Target {
   authorUid: string;
   targetId: string;
   target: string;
-  targetDate: Date;
-  createdAt: Date;
+  targetDate: firestore.Timestamp;
+  createdAt: firestore.Timestamp;
 }
