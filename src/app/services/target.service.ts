@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { map } from 'rxjs/operators';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root',
@@ -50,7 +51,7 @@ export class TargetService {
       authorUid: data.authorUid,
       target: data.target,
       targetDate: data.targetDate,
-      createdAt: new Date(),
+      createdAt: firestore.Timestamp.now(),
     };
     return this.db
       .doc(`targets/${id}`)
@@ -59,7 +60,7 @@ export class TargetService {
         this.snackBar.open('目標を作成しました！', null, {
           duration: 2000,
         });
-        this.router.navigateByUrl('target');
+        this.router.navigateByUrl('target/' + id);
       });
   }
 
