@@ -1,19 +1,29 @@
-<div class="container">
-  <div class="target-container" *ngIf="target$ | async as target">
-    <div class="target">
-      <mat-card class="target__header">
-        <p class="target__text">目標: {{ target.target }}</p>
-        <div class="target__body">
-          <p class="target__authorId">{{ target.authorUid }} さん</p>
-          <p class="target__createdAt">
-            {{ target.createdAt.toDate() | date: 'yyyy/MM/dd' }} からです。
-          </p>
-          <p class="target__date">
-            {{ target.targetDate.toDate() | date: 'yyyy/MM/dd' }} までです。
-          </p>
-        </div>
-      </mat-card>
-      <div class="target__task"></div>
-    </div>
-  </div>
+<div class="container" *ngIf="target$ | async as target">
+  <mat-card class="target-card">
+    <mat-card-header class="target-card__header">
+      <div mat-card-avatar class="target-card__avatar"></div>
+      <mat-card-title>{{ target.author.name }} さん</mat-card-title>
+      <mat-card-subtitle class="target-card__date">
+        {{
+          target.createdAt.toDate() | date: 'yyyy/MM/dd'
+        }}から</mat-card-subtitle
+      >
+      <mat-card-subtitle>
+        {{ target.targetDate.toDate() | date: 'yyyy/MM/dd' }} まで
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p class="target-card__main">
+        {{ target.target }}
+      </p>
+    </mat-card-content>
+
+    <button mat-stroked-button color="warn" class="new-task">
+      今日やることを追加しよう！
+    </button>
+    <button mat-stroked-button>
+      <a class="index" routerLink="/index">目標一覧へ</a>
+    </button>
+  </mat-card>
 </div>

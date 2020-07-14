@@ -8,10 +8,6 @@ const routes: Routes = [
     pathMatch: 'full',
     component: TargetComponent,
   },
-  {
-    path: ':targetId',
-    component: TargetComponent,
-  },
 ];
 
 @NgModule({

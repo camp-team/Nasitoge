@@ -1,0 +1,26 @@
+.container {
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 0 3px #ccc;
+}
+
+.target-card {
+  padding: 16px;
+  &__header {
+    display: flex;
+  }
+  &__avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background: black;
+    margin-right: 8px;
+  }
+}
+
+.index {
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+}

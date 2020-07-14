@@ -1,7 +1,9 @@
+import { firestore } from 'firebase';
+
 export interface User {
   authorUid: string;
   avatarURL: string;
   name: string;
-  createdAt: Date;
+  createdAt: firestore.Timestamp;
   email: string;
 }
