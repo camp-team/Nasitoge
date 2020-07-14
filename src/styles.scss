@@ -3,6 +3,7 @@
 html,
 body {
   height: 100%;
+  background: red($color: #ffdcdc);
 }
 body {
   margin: 0;
@@ -10,4 +11,8 @@ body {
 }
 img {
   max-width: 100%;
+}
+
+a {
+  text-decoration: none;
 }
