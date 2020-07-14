@@ -1,4 +1,5 @@
 import { firestore } from 'firebase';
+import { User } from './user';
 
 export interface Target {
   authorUid: string;
@@ -6,4 +7,8 @@ export interface Target {
   target: string;
   targetDate: firestore.Timestamp;
   createdAt: firestore.Timestamp;
+}
+
+export interface TargetWithAuthor extends Target {
+  author: User;
 }

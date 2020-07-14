@@ -1,0 +1,20 @@
+<div class="container">
+  <a routerLink="/target/{{ targetWithAuthor.targetId }}">
+    <mat-card class="index-card">
+      <mat-card-header>
+        <div mat-card-avatar class="index-card__avatar"></div>
+        <mat-card-title class="index-card__name">{{
+          targetWithAuthor.author.name
+        }}</mat-card-title>
+        <mat-card-subtitle class="index-card__date">{{
+          targetWithAuthor.createdAt.toDate() | date: 'yyyy/MM/dd'
+        }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="index-card__target">
+        <p>
+          {{ targetWithAuthor.target }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </a>
+</div>

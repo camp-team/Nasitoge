@@ -4,12 +4,12 @@ import { CommonModule } from '@angular/common';
 import { TargetRoutingModule } from './target-routing.module';
 import { TargetComponent } from './target/target.component';
 
-import {MatExpansionModule} from '@angular/material/expansion';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {MatCardModule} from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [TargetComponent],
@@ -22,6 +22,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     FormsModule,
     ReactiveFormsModule,
     MatProgressBarModule,
-  ]
+    MatButtonModule,
+  ],
 })
-export class TargetModule { }
+export class TargetModule {}
