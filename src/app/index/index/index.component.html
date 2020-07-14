@@ -1,0 +1,9 @@
+<div class="containar">
+  <app-index-card
+    [targetWithAuthor]="targetWithAuthor"
+    *ngFor="let targetWithAuthor of targetWithAuthor$ | async"
+  ></app-index-card>
+  <div class="index">
+    <div class="index__info"></div>
+  </div>
+</div>

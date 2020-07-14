@@ -24,9 +24,16 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'target',
+        path: 'target/:targetId',
         loadChildren: () =>
           import('./target/target.module').then((m) => m.TargetModule),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'index',
+        loadChildren: () =>
+          import('./index/index.module').then((m) => m.IndexModule),
         canLoad: [AuthGuard],
         canActivate: [AuthGuard],
       },
