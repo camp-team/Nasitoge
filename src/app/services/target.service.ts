@@ -19,7 +19,6 @@ export class TargetService {
     private router: Router
   ) {}
 
-  // マイページで一覧として表示する
   // getTargetByAuthorId(authorUid: string): Observable<Target[]> {
   //   return this.db
   //     .collection<Target>('targetWithAuthor', (ref) =>
