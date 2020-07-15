@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
-import { Observable } from 'rxjs';
-import { User } from './interfaces/user';
-
 
 @Component({
   selector: 'app-root',
@@ -10,7 +7,6 @@ import { User } from './interfaces/user';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  user$ = this.authService.user$;
   title = 'Nasitoge';
 
   constructor(private authService: AuthService) {}
@@ -22,6 +18,4 @@ export class AppComponent {
   logout() {
     this.authService.logout();
   }
-
 }
-
