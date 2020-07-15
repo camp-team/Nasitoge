@@ -24,11 +24,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MainShellComponent } from './main-shell/main-shell.component';
-
+import { NotFoundComponent } from './not-found/not-found.component';
 registerLocaleData(localeJa);
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, MainShellComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    MainShellComponent,
+    NotFoundComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
