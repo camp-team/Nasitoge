@@ -41,7 +41,12 @@ export class GuestGuard implements CanActivate, CanLoad {
   ): Observable<boolean> | Promise<boolean> | boolean {
     return this.authService.user$.pipe(
       map((user) => !user),
-      take(1)
+      take(1),
+      tap((isGuest) => {
+        if (!isGuest) {
+          this.router.navigateByUrl('create');
+        }
+      })
     );
   }
 }

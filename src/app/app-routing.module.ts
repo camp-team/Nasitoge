@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainShellComponent } from './main-shell/main-shell.component';
 import { AuthGuard } from './guards/auth.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { GuestGuard } from './guards/guest.guard';
 
 const routes: Routes = [
   {
@@ -11,6 +13,8 @@ const routes: Routes = [
       root: true,
     },
     loadChildren: () => import('./top/top.module').then((m) => m.TopModule),
+    canLoad: [GuestGuard],
+    canActivate: [GuestGuard],
   },
   {
     path: '',
@@ -38,6 +42,10 @@ const routes: Routes = [
         canActivate: [AuthGuard],
       },
     ],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
   },
 ];
 

@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>404</h1>
+  <p>お探しのページは見つかりませんでした。</p>
+  <footer>
+    <a
+      button
+      mat-button
+      *ngIf="user$ | async"
+      routerLink="/index"
+      class="footer"
+      >ホームに戻る</a
+    >
+  </footer>
+</div>
