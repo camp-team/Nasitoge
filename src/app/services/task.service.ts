@@ -5,31 +5,54 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { firestore } from 'firebase';
-import { Task } from '../interfaces/task';
+import { Task, TaskWithTarget } from '../interfaces/task';
 import { promise } from 'protractor';
+import { stringify } from 'querystring';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TargetWithAuthor, Target } from '../interfaces/target';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  constructor(private db: AngularFirestore) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private db: AngularFirestore,
+    private router: Router
+  ) {}
 
-  createTask(data: Task): Promise<void> {
+  getTaskByTaskId(taskId: string): Observable<Task> {
+    return this.db.doc<Task>(`tasks/${taskId}`).valueChanges();
+  }
+
+  createTask(task: Omit<Task, 'taskId' | 'createdAt'>): Promise<void> {
     const taskId = this.db.createId();
-    return this.db.doc(`tasks/${taskId}`).set({
+    const taskDoc: Task = {
       taskId,
-      ...data,
-      createdAt: new Date(),
-    });
+      title: task.title,
+      createdAt: firestore.Timestamp.now(),
+      taskDate: task.taskDate,
+    };
+    return this.db.doc(`tasks/${taskId}`).set(taskDoc);
   }
 
   deleteTask(taskId: string): Promise<void> {
     return this.db.doc(`tasks/${taskId}`).delete();
   }
 
-  getTaskByTaskId(taskId: string): Observable<Task> {
-    return this.db.doc<Task>(`tasks/${taskId}`).valueChanges();
-  }
+  //  //  getTaskWithTargetByTargetId(targetId: string): Observable<TaskWithTarget> {
+  //  //   return this.db
+  //  //     .doc<TaskWithTarget>(`tasks/${targetId}`)
+  //  //     .valueChanges()
+  //  //     .pipe(
+  //  //       switchMap((task: Task) => {
+  //  //         const target$: Observable<Target> = this.db
+  //  //        .doc
+  //  //       }
+
+  //         )
+  //       );
+  //   }
 }

@@ -1,0 +1,29 @@
+<form [formGroup]="form" (ngSubmit)="createTask()">
+  <mat-form-field>
+    <mat-label>テスト</mat-label>
+    <input
+      matInput
+      type="textarea"
+      formControlName="title"
+      placeholder="ex) 筋トレ"
+      required
+      autocomplete="off"
+    />
+    <mat-error *ngIf="title.hasError('required')">必須項目です</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>達成予定日</mat-label>
+    <input
+      matInput
+      formControlName="taskDate"
+      required
+      [matDatepicker]="picker"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+    <mat-error *ngIf="taskDate.hasError('required')">必須選択です</mat-error>
+  </mat-form-field>
+  <div class="create">
+    <button mat-raised-button>タスク作成</button>
+  </div>
+</form>
