@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
 import { TaskService } from 'src/app/services/task.service';
+import { promise } from 'protractor';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-target',
@@ -13,6 +15,8 @@ import { TaskService } from 'src/app/services/task.service';
   styleUrls: ['./target.component.scss'],
 })
 export class TargetComponent implements OnInit {
+  panelOpenState = false;
+
   target$: Observable<TargetWithAuthor> = this.route.paramMap.pipe(
     switchMap((paramMap) => {
       const id = paramMap.get('targetId');
@@ -24,8 +28,13 @@ export class TargetComponent implements OnInit {
     private targetService: TargetService,
     private taskService: TaskService,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private db: AngularFirestore
   ) {}
 
   ngOnInit(): void {}
+
+  deleteTarget(targetId: string): Promise<void> {
+    return this.db.doc(`targets/${targetId}`).delete();
+  }
 }
