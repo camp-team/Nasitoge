@@ -41,18 +41,4 @@ export class TaskService {
   deleteTask(taskId: string): Promise<void> {
     return this.db.doc(`tasks/${taskId}`).delete();
   }
-
-  //  //  getTaskWithTargetByTargetId(targetId: string): Observable<TaskWithTarget> {
-  //  //   return this.db
-  //  //     .doc<TaskWithTarget>(`tasks/${targetId}`)
-  //  //     .valueChanges()
-  //  //     .pipe(
-  //  //       switchMap((task: Task) => {
-  //  //         const target$: Observable<Target> = this.db
-  //  //        .doc
-  //  //       }
-
-  //         )
-  //       );
-  //   }
 }

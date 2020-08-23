@@ -35,17 +35,6 @@ export class TaskComponent implements OnInit {
     return this.form.get('taskDate') as FormControl;
   }
 
-  // addTask(){
-  //   const formGroup = this.fb.group({
-  //     title: ['', [Validators.required]],
-  //   });
-  //   this.title.push(formGroup);
-  // }
-
-  // removeTask(index: number){
-  //   this.title.removeAt(index);
-  // }
-
   submit() {
     console.log(this.form.value);
   }
