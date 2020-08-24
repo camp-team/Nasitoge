@@ -10,9 +10,16 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { TaskComponent } from './task/task.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [TargetComponent],
+  declarations: [TargetComponent, TaskComponent],
   imports: [
     CommonModule,
     TargetRoutingModule,
@@ -23,6 +30,12 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatProgressBarModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatIconModule,
+    MatSnackBarModule,
   ],
 })
 export class TargetModule {}

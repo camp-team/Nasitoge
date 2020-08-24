@@ -18,12 +18,33 @@
         {{ target.target }}
       </p>
     </mat-card-content>
-
-    <button mat-stroked-button color="warn" class="new-task">
-      今日やることを追加しよう！
-    </button>
-    <a routerLink="/index" class="index" button mat-stroked-button
-      >一覧に戻る</a
-    >
+    <div class="target-card__icon">
+      <button mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteTarget(target.targetId)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
   </mat-card>
+
+  <mat-accordion>
+    <mat-expansion-panel
+      class="task-form"
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          達成するために何をしますか？
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-task></app-task>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <div class="to-index">
+    <a routerLink="/index" button mat-stroked-button>
+      一覧に戻る
+    </a>
+  </div>
 </div>

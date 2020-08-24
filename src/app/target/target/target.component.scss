@@ -1,10 +1,13 @@
 .container {
-  padding: 16px;
+  max-width: 1048px;
+  padding: 24px;
+  margin: 0 auto;
   border-radius: 4px;
-  box-shadow: 0 0 3px #ccc;
+  background: #fafafa;
 }
 
 .target-card {
+  margin-bottom: 16px;
   padding: 16px;
   &__header {
     display: flex;
@@ -16,10 +19,22 @@
     background: black;
     margin-right: 8px;
   }
+  &__main {
+    font-size: 24px;
+  }
+  &__icon {
+    text-align: right;
+  }
 }
 
-.index {
+.task-form {
+  margin-bottom: 16px;
+}
+
+.to-index {
   text-decoration: none;
+  text-align: center;
+  margin-top: 8px;
 }
 a:visited {
   color: black;

@@ -19,34 +19,20 @@ export class TargetService {
     private router: Router
   ) {}
 
-  // getTargetByAuthorId(authorUid: string): Observable<Target[]> {
-  //   return this.db
-  //     .collection<Target>('targetWithAuthor', (ref) =>
-  //       ref.where('authorUid', '==', 'authorUid')
-  //     ).valueChanges();
-
-  ////    return this.db
-  ////      .collection<Target>('targets', (ref) =>
-  ////    ////    ref.where('authorUid', '==', authorUid)
-  ////      )
-  ////      .valueChanges()
-  ////      .pipe(
-  ////    ////    map((targets) => {
-  ////    ////      if (targets.length) {
-  ////    ////    ////    return targets[0];
-  ////    ////      } else {
-  ////    ////    ////    return null;
-  ////    ////      }
-  ////    ////    })
-  ////      );
-  // }
-
   updateTarget(targetId: string, data: Target): Promise<void> {
     return this.db.doc('targets/${targetId}').update(data);
   }
 
   deleteTarget(targetId: string): Promise<void> {
-    return this.db.doc('targets/${targetId}').delete();
+    return this.db
+      .doc(`targets/${targetId}`)
+      .delete()
+      .then(() => {
+        this.snackBar.open('目標を削除しました！', null, {
+          duration: 2000,
+        });
+        this.router.navigateByUrl('/index');
+      });
   }
 
   createTarget(data: Omit<Target, 'targetId' | 'createdAt'>): Promise<void> {
