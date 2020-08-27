@@ -17,8 +17,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TaskComponent implements OnInit {
   form = this.fb.group({
-    title: ['', Validators.required],
-    taskDate: ['', [Validators.required]],
+    tasks: this.fb.array([]),
+    title: ['', [Validators.required]],
+    // taskDate: ['', [Validators.required]],
   });
 
   constructor(
@@ -27,25 +28,25 @@ export class TaskComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  get title(): FormControl {
-    return this.form.get('title') as FormControl;
+  get tasks(): FormArray {
+    return this.form.get('tasks') as FormArray;
   }
 
   get taskDate(): FormControl {
     return this.form.get('taskDate') as FormControl;
   }
 
-  // addTask(){
-  //   const formGroup = this.fb.group({
-  //     title: ['', [Validators.required]],
-  //   });
-  //   this.title.push(formGroup);
-  // }
+  addTask() {
+    const taskFormGroup = this.fb.group({
+      title: ['', [Validators.required]],
+      // taskDate: ['', [Validators.required]]
+    });
+    this.tasks.push(taskFormGroup);
+  }
 
-  // removeTask(index: number){
-  //   this.title.removeAt(index);
-  // }
-
+  removeTask(index: number) {
+    this.tasks.removeAt(index);
+  }
   submit() {
     console.log(this.form.value);
   }
