@@ -1,35 +1,5 @@
-<form [formGroup]="form" (ngSubmit)="createTask()">
-  <mat-form-field>
-    <mat-label>テスト</mat-label>
-    <input
-      matInput
-      type="textarea"
-      formControlName="title"
-      placeholder="ex) 筋トレ"
-      required
-      autocomplete="off"
-    />
-    <mat-error *ngIf="tasks.hasError('required')">必須項目です</mat-error>
-  </mat-form-field>
-
-  <!-- <mat-form-field>
-    <mat-label>達成予定日</mat-label>
-    <input
-      matInput
-      formControlName="taskDate"
-      required
-      [matDatepicker]="picker"
-    />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker touchUi #picker></mat-datepicker>
-    <mat-error *ngIf="taskDate.hasError('required')">必須選択です</mat-error>
-  </mat-form-field>
-  <div class="create">
-    <button mat-raised-button>タスク作成</button>
-  </div>
-</form> -->
-
-  <form [formGroup]="form" (ngSubmit)="addTask()">
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <div formArrayName="tasks">
       <div
         *ngFor="let task of tasks.controls; let i = index"
@@ -42,6 +12,7 @@
             type="text"
             formControlName="title"
             autocomplete="off"
+            required
           />
           <mat-error
             *ngIf="
@@ -51,8 +22,28 @@
             >必須入力です</mat-error
           >
         </mat-form-field>
+        <mat-form-field>
+          <mat-label>達成予定日</mat-label>
+          <input
+            matInput
+            formControlName="taskDate"
+            required
+            [matDatepicker]="picker"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker></mat-datepicker>
+          <mat-error *ngIf="tasks.hasError('required')">必須選択です</mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="button" (click)="removeTask(i)">
+          タスク削除
+        </button>
       </div>
     </div>
-    <button>タスク追加</button>
+    <button mat-raised-button type="button" (click)="addTask()">タスク追加</button>
+    <button mat-raised-button [disabled]="form.invalid || form.pristine">タスク作成</button>
   </form>
-</form>
+</div>
+<p>{{ form.value | json }}</p>

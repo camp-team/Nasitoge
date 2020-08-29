@@ -17,10 +17,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TaskComponent implements OnInit {
   form = this.fb.group({
-    tasks: this.fb.array([]),
-    title: ['', [Validators.required]],
-    // taskDate: ['', [Validators.required]],
+    tasks: this.fb.array([])
   });
+
+  get tasks(): FormArray {
+    return this.form.get('tasks') as FormArray;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -28,18 +30,26 @@ export class TaskComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  get tasks(): FormArray {
-    return this.form.get('tasks') as FormArray;
-  }
 
-  get taskDate(): FormControl {
-    return this.form.get('taskDate') as FormControl;
-  }
+  ngOnInit(): void {}
+
+  //  createTask() {
+  //    const value = this.form.value;
+  //    const task: Omit<Task, 'taskId' | 'createdAt'> = {
+  //      title: value.title,
+  //      taskDate: value.taskDate
+  //    };
+  //    this.taskService.createTask(task).then(() => {
+  //      this.snackBar.open('タスクを作成しました！', null, {
+  //        duration: 2000,
+  //      });
+  //    });
+  //  }
 
   addTask() {
     const taskFormGroup = this.fb.group({
       title: ['', [Validators.required]],
-      // taskDate: ['', [Validators.required]]
+      taskDate: ['', [Validators.required]]
     });
     this.tasks.push(taskFormGroup);
   }
@@ -51,18 +61,4 @@ export class TaskComponent implements OnInit {
     console.log(this.form.value);
   }
 
-  ngOnInit(): void {}
-
-  createTask() {
-    const value = this.form.value;
-    const task: Omit<Task, 'taskId' | 'createdAt'> = {
-      title: value.title,
-      taskDate: value.taskDate,
-    };
-    this.taskService.createTask(task).then(() => {
-      this.snackBar.open('タスクを作成しました！', null, {
-        duration: 2000,
-      });
-    });
-  }
 }

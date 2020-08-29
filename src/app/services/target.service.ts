@@ -97,25 +97,25 @@ export class TargetService {
       );
   }
 
-  getTargetsWithAuthorsByTargetId(
-    targetId: string
-  ): Observable<TargetWithAuthor> {
-    return this.db
-      .doc<Target>(`targets/${targetId}`)
-      .valueChanges()
-      .pipe(
-        switchMap((target: Target) => {
-          const user$: Observable<User> = this.db
-            .doc<User>(`users/${target.authorUid}`)
-            .valueChanges();
-          return combineLatest([user$, of(target)]);
-        }),
-        map(([author, target]) => {
-          return {
-            ...target,
-            author,
-          };
-        })
-      );
-  }
+   getTargetsWithAuthorsByTargetId(
+     targetId: string
+   ): Observable<TargetWithAuthor> {
+     return this.db
+       .doc<Target>(`targets/${targetId}`)
+       .valueChanges()
+       .pipe(
+         switchMap((target: Target) => {
+           const user$: Observable<User> = this.db
+             .doc<User>(`users/${target.authorUid}`)
+             .valueChanges();
+           return combineLatest([user$, of(target)]);
+         }),
+         map(([author, target]) => {
+           return {
+             ...target,
+             author,
+           };
+         })
+       );
+   }
 }
