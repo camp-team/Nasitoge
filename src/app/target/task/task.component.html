@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="submit()">
+  <form [formGroup]="form" (ngSubmit)="createTask()">
     <div formArrayName="tasks">
       <div
         *ngFor="let task of tasks.controls; let i = index"

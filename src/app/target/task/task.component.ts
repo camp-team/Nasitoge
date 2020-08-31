@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  FormControl,
-  FormArray,
-} from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { TaskService } from 'src/app/services/task.service';
-import { TargetService } from 'src/app/services/target.service';
 import { Task } from 'src/app/interfaces/task';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -30,21 +24,24 @@ export class TaskComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-
   ngOnInit(): void {}
 
-  //  createTask() {
-  //    const value = this.form.value;
-  //    const task: Omit<Task, 'taskId' | 'createdAt'> = {
-  //      title: value.title,
-  //      taskDate: value.taskDate
-  //    };
-  //    this.taskService.createTask(task).then(() => {
-  //      this.snackBar.open('タスクを作成しました！', null, {
-  //        duration: 2000,
-  //      });
-  //    });
-  //  }
+  createTask() {
+    const tasks = this.form.value.tasks;
+    Promise.all(
+      tasks.map((task) => {
+        const taskData: Omit<Task, 'taskId' | 'createdAt'> = {
+          title: task.title,
+          taskDate: task.taskDate,
+        };
+        return this.taskService.createTask(taskData);
+      })
+    ).then(() => {
+      this.snackBar.open('タスクを作成しました！', null, {
+        duration: 2000,
+      });
+    });
+  }
 
   addTask() {
     const taskFormGroup = this.fb.group({
@@ -60,5 +57,4 @@ export class TaskComponent implements OnInit {
   submit() {
     console.log(this.form.value);
   }
-
 }
