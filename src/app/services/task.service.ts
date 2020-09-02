@@ -17,10 +17,11 @@ import { TargetWithAuthor, Target } from '../interfaces/target';
   providedIn: 'root',
 })
 export class TaskService {
+
   constructor(
     private snackBar: MatSnackBar,
     private db: AngularFirestore,
-    private router: Router
+
   ) {}
 
   getTaskByTaskId(taskId: string): Observable<Task> {

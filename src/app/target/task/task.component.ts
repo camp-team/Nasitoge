@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-  FormControl,
-  FormArray,
-} from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { TaskService } from 'src/app/services/task.service';
-import { TargetService } from 'src/app/services/target.service';
 import { Task } from 'src/app/interfaces/task';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -17,9 +11,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class TaskComponent implements OnInit {
   form = this.fb.group({
-    title: ['', Validators.required],
-    taskDate: ['', [Validators.required]],
+    tasks: this.fb.array([])
   });
+
+  get tasks(): FormArray {
+    return this.form.get('tasks') as FormArray;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -27,30 +24,37 @@ export class TaskComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  get title(): FormControl {
-    return this.form.get('title') as FormControl;
-  }
-
-  get taskDate(): FormControl {
-    return this.form.get('taskDate') as FormControl;
-  }
-
-  submit() {
-    console.log(this.form.value);
-  }
-
   ngOnInit(): void {}
 
   createTask() {
-    const value = this.form.value;
-    const task: Omit<Task, 'taskId' | 'createdAt'> = {
-      title: value.title,
-      taskDate: value.taskDate,
-    };
-    this.taskService.createTask(task).then(() => {
+    const tasks = this.form.value.tasks;
+    Promise.all(
+      tasks.map((task) => {
+        const taskData: Omit<Task, 'taskId' | 'createdAt'> = {
+          title: task.title,
+          taskDate: task.taskDate,
+        };
+        return this.taskService.createTask(taskData);
+      })
+    ).then(() => {
       this.snackBar.open('タスクを作成しました！', null, {
         duration: 2000,
       });
     });
+  }
+
+  addTask() {
+    const taskFormGroup = this.fb.group({
+      title: ['', [Validators.required]],
+      taskDate: ['', [Validators.required]]
+    });
+    this.tasks.push(taskFormGroup);
+  }
+
+  removeTask(index: number) {
+    this.tasks.removeAt(index);
+  }
+  submit() {
+    console.log(this.form.value);
   }
 }
