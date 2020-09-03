@@ -17,8 +17,9 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MemoComponent } from './memo/memo.component';
 @NgModule({
-  declarations: [TargetComponent, TaskComponent],
+  declarations: [TargetComponent, TaskComponent, MemoComponent],
   imports: [
     CommonModule,
     TargetRoutingModule,

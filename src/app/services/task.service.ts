@@ -1,17 +1,9 @@
 import { Injectable } from '@angular/core';
-import { createUploadTask } from '@angular/fire/storage/task';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
-import { map, switchMap } from 'rxjs/operators';
 import { firestore } from 'firebase';
-import { Task, TaskWithTarget } from '../interfaces/task';
-import { promise } from 'protractor';
-import { stringify } from 'querystring';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { TargetWithAuthor, Target } from '../interfaces/target';
+import { Task } from '../interfaces/task';
 
 @Injectable({
   providedIn: 'root',

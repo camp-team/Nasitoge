@@ -1,3 +1,22 @@
 .create {
   text-align: right;
 }
+
+.form {
+  margin-right: 16px;
+}
+
+.task {
+  &__form {
+    margin-bottom: 16px;
+  }
+  &__delete {
+    text-align: right;
+  }
+  &__button {
+    text-align: center;
+  }
+  &__button {
+    margin-right: 8px;
+  }
+}
