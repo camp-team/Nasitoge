@@ -34,14 +34,15 @@
       (opened)="panelOpenState = true"
       (closed)="panelOpenState = false"
     >
-      <mat-expansion-panel-header>
+      <mat-expansion-panel-header class="task-panel">
         <mat-panel-title>
           達成するために何をしますか？
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <app-task></app-task>
+      <app-task [targetId]="target.targetId"></app-task>
     </mat-expansion-panel>
   </mat-accordion>
+  <app-memo [targetId]="target.targetId"></app-memo>
   <div class="to-index">
     <a routerLink="/index" button mat-stroked-button>
       一覧に戻る

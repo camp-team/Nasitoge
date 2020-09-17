@@ -18,6 +18,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MemoComponent } from './memo/memo.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 @NgModule({
   declarations: [TargetComponent, TaskComponent, MemoComponent],
   imports: [
@@ -36,6 +38,8 @@ import { MemoComponent } from './memo/memo.component';
     MatInputModule,
     MatIconModule,
     MatSnackBarModule,
+    MatDividerModule,
+    MatListModule,
   ],
 })
 export class TargetModule {}

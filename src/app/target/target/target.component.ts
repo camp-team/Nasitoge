@@ -8,6 +8,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { TaskService } from 'src/app/services/task.service';
 import { promise } from 'protractor';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Task } from 'src/app/interfaces/task';
 
 @Component({
   selector: 'app-target',
@@ -26,8 +27,6 @@ export class TargetComponent implements OnInit {
 
   constructor(
     private targetService: TargetService,
-    private taskService: TaskService,
-    private authService: AuthService,
     private route: ActivatedRoute,
     private db: AngularFirestore
   ) {}
