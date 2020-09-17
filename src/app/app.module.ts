@@ -25,6 +25,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MainShellComponent } from './main-shell/main-shell.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BoardDialogComponent } from './dialog/board-dialog/board-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 registerLocaleData(localeJa);
 
 @NgModule({
@@ -33,6 +36,7 @@ registerLocaleData(localeJa);
     HeaderComponent,
     MainShellComponent,
     NotFoundComponent,
+    BoardDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,12 +57,13 @@ registerLocaleData(localeJa);
     FormsModule,
     ReactiveFormsModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [
     { provide: REGION, useValue: 'asia-noth1' },
     { provide: LOCALE_ID, useValue: 'ja-JP' },
   ],
   bootstrap: [AppComponent],
-  // entryComponents: [DeleteDialogComponent]
 })
 export class AppModule {}

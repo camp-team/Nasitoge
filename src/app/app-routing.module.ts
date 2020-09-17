@@ -4,6 +4,7 @@ import { MainShellComponent } from './main-shell/main-shell.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GuestGuard } from './guards/guest.guard';
+import { BoardDialogComponent } from './dialog/board-dialog/board-dialog.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,13 @@ const routes: Routes = [
     path: '',
     component: MainShellComponent,
     children: [
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('./home/home.module').then((m) => m.HomeModule),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
+      },
       {
         path: 'create',
         loadChildren: () =>
@@ -41,6 +49,15 @@ const routes: Routes = [
         canLoad: [AuthGuard],
         canActivate: [AuthGuard],
       },
+      {
+        path: 'board',
+        loadChildren: () =>
+          import('./target-board/target-board.module').then(
+            (m) => m.TargetBoardModule
+          ),
+        canLoad: [AuthGuard],
+        canActivate: [AuthGuard],
+      },
     ],
   },
   {
@@ -52,5 +69,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  entryComponents: [BoardDialogComponent],
 })
 export class AppRoutingModule {}
