@@ -1,7 +1,56 @@
-<div class="container">
-  <mat-form-field appearance="outline">
-    <mat-label>Memo</mat-label>
-    <input
-    matInput>
-  </mat-form-field>
+<div class="container" *ngFor="let task of tasks$ | async">
+  <div class="memo">
+    <mat-card>
+      <p>目標:{{ task.title }}</p>
+      <p>目標達成日:{{ task.taskDate.toDate() | date: 'yyyy/MM/dd' }}</p>
+      <p>メモ:{{ task.memos }}</p>
+      <form [formGroup]="form">
+        <div formArrayName="memos">
+          <div
+            *ngFor="let memo of memos.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="memo__form">
+              <mat-form-field appearance="outline" class="form">
+                <mat-label>テスト</mat-label>
+                <input
+                  matInput
+                  type="textarea"
+                  formControlName="memo"
+                  autocomplete="off"
+                  required
+                />
+                <mat-error
+                  *ngIf="
+                    memo.get('memo').touched &&
+                    memo.get('memo').hasError('required')
+                  "
+                  >必須入力です</mat-error
+                >
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="memo__button">
+          <button
+            mat-raised-button
+            type="button"
+            class="memo__add"
+            (click)="addMemos()"
+          >
+            フォーム追加
+          </button>
+          <button
+            mat-raised-button
+            class="memo__create"
+            [disabled]="form.invalid || form.pristine"
+            (click)="updateMemo(task)"
+          >
+            メモ追加作成
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
 </div>
