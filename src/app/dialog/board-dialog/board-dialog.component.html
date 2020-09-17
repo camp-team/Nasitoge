@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="board__title">
+    <form [formGroup]="form" (ngSubmit)="createTargetBoard()">
+      <mat-form-field appearance="outline">
+        <input
+          type="text"
+          matInput
+          formControlName="boardTitle"
+          required
+          placeholder="ボードタイトルを記入"
+          autocomplete="off"
+        />
+        <mat-error *ngIf="boardTitle.hasError('required')">必須です</mat-error>
+        <mat-error *ngIf="boardTitle.hasError('maxlength')"
+          >最大50文字です</mat-error
+        >
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="form.invalid">
+        ボードを作成
+      </button>
+    </form>
+  </div>
+</div>
