@@ -7,7 +7,7 @@
       >
         <div class="task__form">
           <mat-form-field appearance="outline" class="form">
-            <mat-label>テスト</mat-label>
+            <mat-label>Task</mat-label>
             <input
               matInput
               type="text"
@@ -24,7 +24,7 @@
             >
           </mat-form-field>
           <mat-form-field appearance="outline" class="form">
-            <mat-label>達成予定日</mat-label>
+            <mat-label>Task Date</mat-label>
             <input
               matInput
               formControlName="taskDate"
@@ -40,19 +40,41 @@
               >必須選択です</mat-error
             >
           </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Memo</mat-label>
+            <textarea
+              formControlName="memo"
+              matInput
+              placeholder="Placeholder"
+            ></textarea>
+          </mat-form-field>
           <div class="task__delete">
-            <button mat-raised-button  color="warn" type="button" (click)="removeTask(i)">
+            <button
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="removeTask(i)"
+            >
               タスク削除
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="task__button">
-      <button mat-raised-button type="button" class="task__button"(click)="addTask()">
+    <div class="memo__button">
+      <button
+        mat-raised-button
+        type="button"
+        class="task__add"
+        (click)="addTask()"
+      >
         タスク追加
       </button>
-      <button mat-raised-button class="task__button" [disabled]="form.invalid || form.pristine">
+      <button
+        mat-raised-button
+        class="task__create"
+        [disabled]="form.invalid || form.pristine || processing"
+      >
         タスク作成
       </button>
     </div>
