@@ -34,6 +34,9 @@ export class BoardDialogComponent implements OnInit {
         const boardData: Omit<TargetBoard, 'boardId'> = {
           title: board.title,
           authorUid: board.authorUid,
+          genre: board.genre,
+          subTask: board.subTask,
+          importance: board.importance,
         };
         return this.boardService.createTargetBoard(boardData);
       })

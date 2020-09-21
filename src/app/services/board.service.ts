@@ -25,13 +25,11 @@ export class BoardService {
       title: board.title,
       boardId,
       authorUid: board.authorUid,
+      genre: board.genre,
+      subTask: board.subTask,
+      importance: board.importance,
     };
-    return this.db
-      .doc(`boards/${boardId}`)
-      .set(targetBoard)
-      .then(() => {
-        this.router.navigateByUrl('/board' + boardId);
-      });
+    return this.db.doc(`boards/${boardId}`).set(targetBoard);
   }
 
   getTargetBoardWithAuthorIdByBoardId(
